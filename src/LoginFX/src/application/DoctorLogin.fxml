@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="300.0" prefWidth="350.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="application.MainController">
+   <children>
+      <PasswordField fx:id="doctorPassword" layoutX="101.0" layoutY="150.0" prefHeight="37.0" prefWidth="149.0" promptText="Password" />
+      <Label fx:id="doctorTitle" layoutX="118.0" layoutY="63.0" text="Doctor Login">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="doctorID" layoutX="101.0" layoutY="103.0" prefHeight="37.0" prefWidth="149.0" promptText="Username" />
+      <Label layoutX="101.0" layoutY="198.0" text="Status" />
+      <Button layoutX="149.0" layoutY="215.0" mnemonicParsing="false" onAction="#doctorLoginButton" text="Button" />
+   </children>
+</AnchorPane>
