@@ -326,6 +326,13 @@ public class Main extends Application
 								
 								errormsg.setFill(Color.GREEN);
 								errormsg.setText("A confirmation email has been sent.\nFollow the instructions in the email.");
+								
+								//this is the code added for sending the email after setting up account
+								try {
+                           					 	Messaging.sendMail(Email);
+                       					        } catch (Exception e) {
+                          						  e.printStackTrace();
+                        					}
 							}
 						}
 						
