@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class MySQLConnection 
 {
-	private Connection connection;	
+	private static Connection connection;	
 	private Doctor doc;
 	private Nurse nurse;
 	private Patient patient;

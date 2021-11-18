@@ -21,6 +21,9 @@ private Connection conn;
 			PreparedStatement ps = conn.prepareStatement("CREATE TABLE IF NOT EXISTS Nurse (NAME VARCHAR(100), DOB VARCHAR(100), GENDER VARCHAR(100), "
 					+ "USERNAME VARCHAR(100), PASSWORD VARCHAR(100), NURSEID INT(100))");
 			ps.executeUpdate();
+			
+			createNurse("Kate Patterson", 1000);
+			addNurse("07/31/1999", "Female", "KPatt99", "kitkatPatt", 1000);
 		}
 		catch(SQLException e)
 		{
@@ -28,11 +31,7 @@ private Connection conn;
 			e.printStackTrace();
 		}
 		
-		createNurse("Ben", 1001);
-		createNurse("Test", 1002);
-		createNurse("duplicate", 1002);
-		addNurse("040701", "Male", "bwpeter5", "bigben1234", 1001);
-		addNurse("05/07/01", "Female", "urmom", "urdad", 1002);
+		
 	}
 	
 	public void createNurse(String name, int NurseID)
@@ -41,7 +40,7 @@ private Connection conn;
 		{
 			if(!exists(NurseID))
 			{
-				PreparedStatement ps = conn.prepareStatement("INSERT IGNORE INTO Nurse (Name, NurseID) VALUES (?, ?)");
+				PreparedStatement ps = conn.prepareStatement("INSERT IGNORE INTO Nurse (NAME, NURSEID) VALUES (?, ?)");
 				ps.setString(1, name);
 				ps.setInt(2, NurseID);
 				ps.executeUpdate();
@@ -106,6 +105,32 @@ private Connection conn;
 			System.out.println("Error with removeNurse!");
 			e.printStackTrace();
 		} 
+	}
+	
+	public boolean checkUserPass(String username, String password)
+	{
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM Nurse WHERE USERNAME=? AND PASSWORD=?");
+			ps.setString(1, username);
+			ps.setString(2, password);
+			
+			ResultSet results = ps.executeQuery();
+			
+			if(results.next())
+			{
+				return true;
+			}
+			
+			return false;
+		}
+		catch(SQLException e)
+		{
+			System.out.print("Error with CheckUserPass for Nurse");
+			e.printStackTrace();
+		}
+		
+		return false;
 	}
 	
 	// Will be used later on to check for duplicates

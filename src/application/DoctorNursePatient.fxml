@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="300.0" prefWidth="350.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="application.MainController">
+   <children>
+      <Label fx:id="txtMenu" layoutX="7.0" layoutY="14.0" text="Welcome! Please select your account type." textFill="#144c90">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="22.0" layoutY="125.0" mnemonicParsing="false" onAction="#DoctorLogin" prefWidth="80.0" text="Doctor" />
+      <Button layoutX="135.0" layoutY="125.0" mnemonicParsing="false" onAction="#PatientLogin" prefWidth="80.0" text="Patient" />
+      <Button layoutX="247.0" layoutY="125.0" mnemonicParsing="false" onAction="#NurseLogin" prefWidth="80.0" text="Nurse" />
+   </children>
+</AnchorPane>
