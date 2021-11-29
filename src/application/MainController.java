@@ -20,6 +20,9 @@ public class MainController {
 	private static MySQLConnection conn = new MySQLConnection();
 	
 	@FXML
+	private Label lblCreateAccount;
+	
+	@FXML
 	private Label txtMenu; 
 	@FXML
 	private	Label lblStatus;
@@ -86,6 +89,17 @@ public class MainController {
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		primaryStage.setScene(scene);
 		primaryStage.show();
+	}
+	public void CreateAccount(ActionEvent event) throws Exception{
+		Stage primaryStage = new Stage();
+		Parent root = FXMLLoader.load(getClass().getResource("/application/CreateAccount.fxml"));
+		Scene scene = new Scene(root,350,300);
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
+	public void AccountSuccess(ActionEvent event) throws Exception{
+		lblCreateAccount.setText("Success, an email has been sent with instructions!");
 	}
 	
 	//main login button
