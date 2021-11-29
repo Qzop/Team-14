@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<TabPane prefHeight="444.0" prefWidth="559.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <tabs>
+      <Tab text="Patient Overview">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="307.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="23.0" layoutY="99.0" text="Health" />
+                  <Label layoutX="23.0" layoutY="72.0" text="PatientID" />
+                  <Label layoutX="22.0" layoutY="43.0" text="Pharmacy" />
+                  <Label layoutX="23.0" layoutY="128.0" text="Prescriptions" />
+                  <Label layoutX="23.0" layoutY="160.0" text="Next Appointment" />
+               </children></AnchorPane>
+         </content>
+      </Tab>
+      <Tab text="Edit Info">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+         </content>
+      </Tab>
+   </tabs>
+</TabPane>

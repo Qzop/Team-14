@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="300.0" prefWidth="350.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="application.MainController">
+<AnchorPane prefHeight="300.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
    <children>
       <PasswordField fx:id="doctorPassword" layoutX="101.0" layoutY="150.0" prefHeight="37.0" prefWidth="149.0" promptText="Password" />
       <Label fx:id="doctorTitle" layoutX="118.0" layoutY="63.0" text="Doctor Login">
@@ -17,7 +16,17 @@
          </font>
       </Label>
       <TextField fx:id="doctorID" layoutX="101.0" layoutY="103.0" prefHeight="37.0" prefWidth="149.0" promptText="Username" />
-      <Label layoutX="101.0" layoutY="198.0" text="Status" />
-      <Button layoutX="149.0" layoutY="215.0" mnemonicParsing="false" onAction="#doctorLoginButton" text="Button" />
+      <Label fx:id="errorDoctor" layoutX="82.0" layoutY="235.0" prefHeight="44.0" prefWidth="216.0" />
+      <Button layoutX="152.0" layoutY="201.0" mnemonicParsing="false" onAction="#doctorLoginButton" text="Login" />
+      <Label layoutX="38.0" layoutY="113.0" text="Username">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="38.0" layoutY="160.0" text="Password">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

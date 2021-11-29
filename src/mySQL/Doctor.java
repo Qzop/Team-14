@@ -74,20 +74,34 @@ public class Doctor
 		}
 	}
 	
-	public void getDoctor(int DoctorID)
+	public int getDoctorID(String user, String pass)
 	{
 		try
 		{
-			PreparedStatement ps = conn.prepareStatement("SELECT NAME FROM Doctor WHERE DOCTORID=?");
-			ps.setInt(1, DoctorID);
-			ps.executeUpdate();
+			PreparedStatement ps = conn.prepareStatement("SELECT DOCTORID FROM Doctor WHERE USERNAME=? AND PASSWORD=?");
+			ps.setString(1, user);
+			ps.setString(2, pass);
+			
+			ResultSet rs = ps.executeQuery();
+			int doctorid;
+			
+			if(rs.next())
+			{
+				doctorid = rs.getInt("DOCTORID");
+				
+				return doctorid; 
+			}
+			
+			
+			return 0;
 		}
 		catch(SQLException e)
 		{
 			System.out.println("Error with getDoctor");
 			e.printStackTrace();
 		}
-				
+		
+		return 0;
 	}
 	
 	public void removeDoctor(int DoctorID)

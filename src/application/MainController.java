@@ -18,19 +18,16 @@ import mySQL.Patient;
 public class MainController {
 	
 	private static MySQLConnection conn = new MySQLConnection();
-// Create Account
-	@FXML
-	private Label lblCreateAccount;
-	@FXML
-	private TextField fName;
-	@FXML
-	private TextField lName;
-	@FXML
-	private TextField xBirthday;
-	@FXML
-	private TextField xPhoneNumber;
-	@FXML
-	private TextField xEmail;
+	private Doctor doc = new Doctor(conn.getConnection());
+	private Patient pat = new Patient(conn.getConnection());
+	private Nurse nurse = new Nurse(conn.getConnection());
+	
+	private static String docUser;
+	private static String docPass;
+	private static String nurseUser;
+	private static String nursePass;
+	private static String patientPass;
+	private static String patientUser;
 	
 	@FXML
 	private Label txtMenu; 
@@ -52,24 +49,27 @@ public class MainController {
 	
 	@FXML
 	private	TextField nursePassword;
+	
+	@FXML
+    private Label errorNurse;
 //patient login
 	@FXML	
 	private Label patientTitle;
-	@FXML
-	private Label lblPatientStat;
 	@FXML 	
 	private TextField patientID;
 	@FXML
 	private	TextField patientPassword;
+	@FXML
+    private Label errorPatient;
 //doctor login
 	@FXML
 	private Label doctorTitle;
 	@FXML
-	private Label lblDoctorStat;
-	@FXML
 	private TextField doctorID;
 	@FXML
 	private TextField doctorPassword;
+	@FXML
+    private Label errorDoctor;
 	
 	
 	
@@ -82,6 +82,7 @@ public class MainController {
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
+	
 	public void PatientLogin(ActionEvent event) throws Exception{
 		 //write code... for patient
 		Stage primaryStage = new Stage();
@@ -91,33 +92,15 @@ public class MainController {
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
+	
 	public void NurseLogin(ActionEvent event) throws Exception{
 		//write code... for nurses
 		Stage primaryStage = new Stage();
-		Parent root = FXMLLoader.load(getClass().getResource("/application/MainFXML.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/application/NurseLogin.fxml"));
 		Scene scene = new Scene(root,350,300);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		primaryStage.setScene(scene);
 		primaryStage.show();
-	}
-	public void CreateAccount(ActionEvent event) throws Exception{
-		Stage primaryStage = new Stage();
-		Parent root = FXMLLoader.load(getClass().getResource("/application/CreateAccount.fxml"));
-		Scene scene = new Scene(root,350,300);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		primaryStage.setScene(scene);
-		primaryStage.show();
-	}
-	public void AccountSuccess(ActionEvent event) throws Exception{
-		if (!lName.getText().isEmpty() && !fName.getText().isEmpty() && !xBirthday.getText().isEmpty()
-				&& !xEmail.getText().isEmpty() && !xPhoneNumber.getText().isEmpty())
-		{
-			lblCreateAccount.setText("Success, an email has been sent with instructions!");
-		}
-		else
-		{
-			lblCreateAccount.setText("Create Account Failed!");
-		}
 	}
 	
 	//main login button
@@ -127,7 +110,7 @@ public class MainController {
 		{
 			lblStatus.setText("Login Success");
 			Stage primaryStage = new Stage();
-			Parent root = FXMLLoader.load(getClass().getResource("/application/MainFXML.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/application/NurseLogin.fxml"));
 			Scene scene = new Scene(root,350,300);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
@@ -140,81 +123,195 @@ public class MainController {
 	
 	public void nurseLoginButton(ActionEvent event) throws Exception 
 	{
-		String username = nurseUsername.getText();
-		String pass = nursePassword.getText();
+		errorNurse.setText("");
+		patientUser = nurseUsername.getText();
+		patientPass = nursePassword.getText();
 		
-		Nurse nurse = new Nurse(conn.getConnection());
-		
-		if(nurse.checkUserPass(username, pass))
+		if(!nurseUsername.getText().isEmpty() && !nursePassword.getText().isEmpty())
 		{
-			System.out.println("Login Successful!");
-			
-			/*lblPatientStat.setText("Login Success");
-			Stage primaryStage = new Stage();
-			Parent root = FXMLLoader.load(getClass().getResource("/application/MainFXML.fxml"));
-			Scene scene = new Scene(root,350,300);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();*/
+			if(nurse.checkUserPass(patientUser, patientPass))
+			{
+				System.out.println("Login Successful!");
+				
+				Stage primaryStage = new Stage();
+				Parent r = FXMLLoader.load(getClass().getResource("/application/NurseView.fxml"));
+				Scene s = new Scene(r,400,400);
+				s.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+				primaryStage.setScene(s);
+				primaryStage.setHeight(520);
+				primaryStage.setWidth(500);
+				primaryStage.show();
+			}
+			else 
+			{
+				errorNurse.setStyle("-fx-text-fill: red");
+				errorNurse.setText("Username and password do not match.");
+			} 
 		}
-		else 
+		else
 		{
-			System.out.println("Login Failed.");
-			//lblPatientStat.setText("Login Failed.");
-		} 
+			if(nurseUsername.getText().isEmpty())
+			{
+				nurseUsername.setStyle("-fx-text-box-border: #B22222; -fx-focus-color: #B22222;");
+			}
+			else
+			{
+				nurseUsername.setStyle("");
+			}
+			
+			if(nursePassword.getText().isEmpty())
+			{
+				nursePassword.setStyle("-fx-text-box-border: #B22222; -fx-focus-color: #B22222;");
+			}
+			else
+			{
+				nursePassword.setStyle("");
+			}
+			
+			errorNurse.setStyle("-fx-text-fill: red");
+			errorNurse.setText("You must fill out the required fields!");
+		}
+	}
+	
+	public void createAccountButton(ActionEvent event) throws Exception
+	{
+		Stage primaryStage = new Stage();
+		Parent root = FXMLLoader.load(getClass().getResource("/application/CreateAccount.fxml"));
+		Scene scene = new Scene(root,400,300);
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 	
 	public void patientLoginButton(ActionEvent event) throws Exception 
 	{
-		String username = patientID.getText();
-		String pass = patientPassword.getText();
+		errorPatient.setText("");
+		patientUser = patientID.getText();
+		patientPass = patientPassword.getText();
 		
-		Patient pat = new Patient(conn.getConnection());
-		
-		if(pat.checkUserPass(username, pass))
+		if(!patientID.getText().isEmpty() && !patientPassword.getText().isEmpty())
 		{
-			System.out.println("Login Successful!");
-			
-			/*lblPatientStat.setText("Login Success");
-			Stage primaryStage = new Stage();
-			Parent root = FXMLLoader.load(getClass().getResource("/application/MainFXML.fxml"));
-			Scene scene = new Scene(root,350,300);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();*/
+			if(pat.checkUserPass(patientUser, patientPass))
+			{
+				System.out.println("Login Successful!");
+				
+				Stage primaryStage = new Stage();
+				Parent root = FXMLLoader.load(getClass().getResource("/application/PatientView.fxml"));
+				Scene scene = new Scene(root,400,400);
+				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+				primaryStage.setScene(scene);
+				primaryStage.show();
+			}
+			else 
+			{
+				errorPatient.setStyle("-fx-text-fill: red");
+				errorPatient.setText("Username and password do not match.");
+			} 
 		}
-		else 
+		else
 		{
-			System.out.println("Login Failed.");
-			//lblPatientStat.setText("Login Failed.");
-		} 
+			if(patientID.getText().isEmpty())
+			{
+				patientID.setStyle("-fx-text-box-border: #B22222; -fx-focus-color: #B22222;");
+			}
+			else
+			{
+				patientID.setStyle("");
+			}
+			
+			if(patientPassword.getText().isEmpty())
+			{
+				patientPassword.setStyle("-fx-text-box-border: #B22222; -fx-focus-color: #B22222;");
+			}
+			else
+			{
+				patientPassword.setStyle("");
+			}
+			
+			errorPatient.setStyle("-fx-text-fill: red");
+			errorPatient.setText("You must fill out the required fields!");
+		}
 	}
 	
 	public void doctorLoginButton(ActionEvent event) throws Exception 
 	{
-		String username = doctorID.getText();
-		String pass = doctorPassword.getText();
+		errorDoctor.setText("");
+		docUser = doctorID.getText();
+		docPass = doctorPassword.getText();
 		
-		Doctor doc = new Doctor(conn.getConnection());
-		
-		
-		if(doc.checkUserPass(username, pass))
+		if(!doctorID.getText().isEmpty() && !doctorPassword.getText().isEmpty())
 		{
-			System.out.println("Login Successful!");
-			
-			/*lblDoctorStat.setText("Login Success"); 
-			Stage primaryStage = new Stage();
-			Parent root = FXMLLoader.load(getClass().getResource("/application/DoctorAccount.fxml"));
-			Scene scene = new Scene(root,350,300);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();*/
+			if(doc.checkUserPass(docUser, docPass))
+			{
+				System.out.println("Login Successful!");
+				
+				Stage primaryStage = new Stage();
+				Parent r = FXMLLoader.load(getClass().getResource("/application/DoctorView.fxml"));
+				Scene s = new Scene(r,400,400);
+				s.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+				primaryStage.setScene(s);
+				primaryStage.setHeight(520);
+				primaryStage.setWidth(620);
+				primaryStage.show();
+			}
+			else 
+			{
+				if(doctorID.getText().isEmpty())
+				{
+					doctorID.setStyle("-fx-text-box-border: #B22222; -fx-focus-color: #B22222;");
+				}
+				else
+				{
+					doctorID.setStyle("");
+				}
+				
+				if(doctorPassword.getText().isEmpty())
+				{
+					doctorPassword.setStyle("-fx-text-box-border: #B22222; -fx-focus-color: #B22222;");
+				}
+				else
+				{
+					doctorPassword.setStyle("");
+				}
+				
+				errorDoctor.setStyle("-fx-text-fill: red");
+				errorDoctor.setText("Username and password do not match.");
+			}
 		}
-		else 
+		else
 		{
-			//lblDoctorStat.setText("Login Failed.");
-			
-			System.out.println("Login Failed.");
+			errorDoctor.setStyle("-fx-text-fill: red");
+			errorDoctor.setText("You must fill out the required fields!");
 		}
+	}
+	
+	public String getDocUser()
+	{
+		return docUser;
+	}
+	
+	public String getDocPass()
+	{
+		return docPass;
+	}
+	
+	public String getNurseUser()
+	{
+		return nurseUser;
+	}
+	
+	public String getNursePass()
+	{
+		return nursePass;
+	}
+	
+	public String getPatUser()
+	{
+		return patientUser;
+	}
+	
+	public String getPatPass()
+	{
+		return patientPass;
 	}
 }
