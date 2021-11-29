@@ -16,5 +16,6 @@
       <Button layoutX="22.0" layoutY="125.0" mnemonicParsing="false" onAction="#DoctorLogin" prefWidth="80.0" text="Doctor" />
       <Button layoutX="135.0" layoutY="125.0" mnemonicParsing="false" onAction="#PatientLogin" prefWidth="80.0" text="Patient" />
       <Button layoutX="247.0" layoutY="125.0" mnemonicParsing="false" onAction="#NurseLogin" prefWidth="80.0" text="Nurse" />
+      <Button layoutX="95.0" layoutY="200.0" mnemonicParsing="false" onAction="#CreateAccount" prefWidth="160.0" text="Create Account" />
    </children>
 </AnchorPane>
