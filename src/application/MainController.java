@@ -18,9 +18,19 @@ import mySQL.Patient;
 public class MainController {
 	
 	private static MySQLConnection conn = new MySQLConnection();
-	
+// Create Account
 	@FXML
 	private Label lblCreateAccount;
+	@FXML
+	private TextField fName;
+	@FXML
+	private TextField lName;
+	@FXML
+	private TextField xBirthday;
+	@FXML
+	private TextField xPhoneNumber;
+	@FXML
+	private TextField xEmail;
 	
 	@FXML
 	private Label txtMenu; 
@@ -99,7 +109,15 @@ public class MainController {
 		primaryStage.show();
 	}
 	public void AccountSuccess(ActionEvent event) throws Exception{
-		lblCreateAccount.setText("Success, an email has been sent with instructions!");
+		if (!lName.getText().isEmpty() && !fName.getText().isEmpty() && !xBirthday.getText().isEmpty()
+				&& !xEmail.getText().isEmpty() && !xPhoneNumber.getText().isEmpty())
+		{
+			lblCreateAccount.setText("Success, an email has been sent with instructions!");
+		}
+		else
+		{
+			lblCreateAccount.setText("Create Account Failed!");
+		}
 	}
 	
 	//main login button
