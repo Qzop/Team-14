@@ -16,8 +16,8 @@
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <DatePicker fx:id="date" layoutX="213.0" layoutY="32.0" promptText="dd/mm/yyyy" />
-                  <ListView fx:id="listview" editable="true" layoutX="61.0" layoutY="99.0" prefHeight="266.0" prefWidth="478.0" />
-                  <Button fx:id="btn_view" layoutX="274.0" layoutY="393.0" mnemonicParsing="false" onAction="#onClick_View" onMouseClicked="#viewClicked" text="View" />
+                  <ListView fx:id="appt_listview" editable="true" layoutX="61.0" layoutY="99.0" prefHeight="266.0" prefWidth="478.0" />
+                  <Button fx:id="btn_view" layoutX="274.0" layoutY="393.0" mnemonicParsing="false" onAction="#onClick_View" onMouseClicked="#onClick_View" text="View" />
                </children></AnchorPane>
       </content>
     </Tab>
@@ -25,8 +25,8 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TextField layoutX="300.0" layoutY="60.0" promptText="DoctorID" />
-                  <Button layoutX="191.0" layoutY="60.0" mnemonicParsing="false" text="Search" />
+                  <TextField fx:id="txt_DoctoID" layoutX="300.0" layoutY="60.0" promptText="DoctorID" />
+                  <Button fx:id="btn_SearchDoctor" layoutX="191.0" layoutY="60.0" mnemonicParsing="false" text="Search" />
                   <ListView fx:id="doctorList" layoutX="14.0" layoutY="100.0" prefHeight="351.0" prefWidth="572.0" />
                </children></AnchorPane>
          </content>
@@ -36,11 +36,11 @@
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <ListView fx:id="patientList" layoutX="14.0" layoutY="80.0" prefHeight="308.0" prefWidth="570.0" />
-                  <Button fx:id="btn_PatientAdd" layoutX="61.0" layoutY="395.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Add" />
-                  <Button fx:id="btn_remove" layoutX="61.0" layoutY="424.0" mnemonicParsing="false" onAction="#onClick_RemovePatient" text="Remove" />
-                  <TextField layoutX="307.0" layoutY="47.0" promptText="Patient ID" />
-                  <TextField layoutX="173.0" layoutY="412.0" />
-                  <Button fx:id="btn_Search" layoutX="211.0" layoutY="47.0" mnemonicParsing="false" onAction="#onClick_PatientSearch" prefHeight="25.0" prefWidth="59.0" text="Search" />
+                  <Button fx:id="btn_PatientAdd" layoutX="61.0" layoutY="395.0" mnemonicParsing="false" onAction="#onClick_addPatient" prefHeight="25.0" prefWidth="59.0" text="Add" />
+                  <Button fx:id="btn_PatientRemove" layoutX="61.0" layoutY="424.0" mnemonicParsing="false" onAction="#onClick_RemovePatient" text="Remove" />
+                  <TextField fx:id="txt_PatientID" layoutX="307.0" layoutY="47.0" promptText="Patient ID" />
+                  <TextField fx:id="txt_PatientID2" layoutX="173.0" layoutY="412.0" promptText="Patient ID" />
+                  <Button fx:id="btn_SearchPatient" layoutX="211.0" layoutY="47.0" mnemonicParsing="false" onAction="#onClick_PatientSearch" prefHeight="25.0" prefWidth="59.0" text="Search" />
                </children></AnchorPane>
          </content>
       </Tab>
@@ -48,18 +48,18 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TextField layoutX="22.0" layoutY="36.0" promptText="Patient ID" />
-                  <Label layoutX="22.0" layoutY="19.0" text="Patient ID" />
-                  <Label layoutX="242.0" layoutY="19.0" text="Weight" />
-                  <Label layoutX="22.0" layoutY="74.0" text="Age" />
-                  <Label layoutX="244.0" layoutY="74.0" text="Height" />
-                  <Label layoutX="22.0" layoutY="123.0" text="Temperature" />
-                  <TextField layoutX="22.0" layoutY="91.0" promptText="Weight" />
-                  <Label layoutX="239.0" layoutY="123.0" text="Blood Pressure" />
-                  <TextField layoutX="242.0" layoutY="36.0" promptText="Weight" />
-                  <TextField layoutX="242.0" layoutY="91.0" promptText="Height" />
-                  <TextField layoutX="242.0" layoutY="146.0" promptText="Blood Pressure" />
-                  <TextField layoutX="22.0" layoutY="146.0" promptText="Temperature" />
+                  <TextField fx:id="txt_PatientID3" layoutX="22.0" layoutY="36.0" promptText="Patient ID" />
+                  <Label fx:id="lbl_PatientID" layoutX="22.0" layoutY="19.0" text="Patient ID" />
+                  <Label fx:id="lbl_Weight" layoutX="242.0" layoutY="19.0" text="Weight" />
+                  <Label fx:id="lbl_Age" layoutX="22.0" layoutY="74.0" text="Age" />
+                  <Label fx:id="lbl_Height" layoutX="244.0" layoutY="74.0" text="Height" />
+                  <Label fx:id="lbl_Temperature" layoutX="22.0" layoutY="123.0" text="Temperature" />
+                  <TextField fx:id="txt_Age" layoutX="22.0" layoutY="91.0" promptText="Age" />
+                  <Label fx:id="lbl_BloodPressure" layoutX="239.0" layoutY="123.0" text="Blood Pressure" />
+                  <TextField fx:id="txt_Weight" layoutX="242.0" layoutY="36.0" promptText="Weight" />
+                  <TextField fx:id="txt_Height" layoutX="242.0" layoutY="91.0" promptText="Height" />
+                  <TextField fx:id="txt_BloodP" layoutX="242.0" layoutY="146.0" promptText="Blood Pressure" />
+                  <TextField fx:id="txt_Temperature" layoutX="22.0" layoutY="146.0" promptText="Temperature" />
                   <Button layoutX="22.0" layoutY="207.0" mnemonicParsing="false" text="Submit" />
                </children>
             </AnchorPane>
