@@ -11,7 +11,7 @@
 
 <TabPane prefHeight="444.0" prefWidth="559.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PatientController">
    <tabs>
-      <Tab fx:id="btn_Overview" text="Patient Overview">
+      <Tab text="Patient Overview">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="307.0" prefWidth="200.0">
                <children>
@@ -20,15 +20,15 @@
                   <Label fx:id="lbl_Pharmacy" layoutX="22.0" layoutY="43.0" text="Pharmacy" />
                   <Label fx:id="lbl_Prescriptions" layoutX="23.0" layoutY="128.0" text="Prescriptions" />
                   <Label fx:id="lbl_nxtAppointment" layoutX="23.0" layoutY="160.0" text="Next Appointment" />
-                  <TextField fx:id="txt_Pharmacy" layoutX="205.0" layoutY="39.0" prefHeight="25.0" prefWidth="303.0" />
-                  <TextField fx:id="txt_PatientID" layoutX="205.0" layoutY="68.0" prefHeight="25.0" prefWidth="303.0" />
-                  <TextField fx:id="txt_Health" layoutX="205.0" layoutY="95.0" prefHeight="25.0" prefWidth="303.0" />
-                  <TextField fx:id="txt_Prescriptions" layoutX="205.0" layoutY="124.0" prefHeight="25.0" prefWidth="303.0" />
-                  <TextField fx:id="txt_nxtApp" layoutX="205.0" layoutY="156.0" prefHeight="25.0" prefWidth="303.0" />
+                  <TextField fx:id="txt_Pharmacy" editable="false" layoutX="205.0" layoutY="39.0" prefHeight="25.0" prefWidth="303.0" />
+                  <TextField fx:id="txt_PatientID" editable="false" layoutX="205.0" layoutY="68.0" prefHeight="25.0" prefWidth="303.0" />
+                  <TextField fx:id="txt_Health" editable="false" layoutX="205.0" layoutY="95.0" prefHeight="25.0" prefWidth="303.0" />
+                  <TextField fx:id="txt_Prescriptions" editable="false" layoutX="205.0" layoutY="124.0" prefHeight="25.0" prefWidth="303.0" />
+                  <TextField fx:id="txt_nxtApp" editable="false" layoutX="205.0" layoutY="156.0" prefHeight="25.0" prefWidth="303.0" />
                </children></AnchorPane>
          </content>
       </Tab>
-      <Tab fx:id="btn_EditInfo" text="Edit Info">
+      <Tab text="Edit Info">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -48,16 +48,15 @@
                </children></AnchorPane>
          </content>
       </Tab>
-      <Tab fx:id="btn_Summary" text="Visit Summary">
+      <Tab text="Visit Summary">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <ListView layoutX="14.0" layoutY="84.0" prefHeight="317.0" prefWidth="530.0" />
-                  <DatePicker layoutX="192.0" layoutY="48.0" promptText="dd/mm/yyyy" />
+                  <DatePicker fx:id="date" layoutX="192.0" layoutY="48.0" promptText="dd/mm/yyyy" />
                </children>
             </AnchorPane>
          </content>
       </Tab>
    </tabs>
 </TabPane>
-
